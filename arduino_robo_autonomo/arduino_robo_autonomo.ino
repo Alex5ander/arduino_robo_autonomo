@@ -1,22 +1,13 @@
 
 
-#define TRIGGER 2
-#define ECHO 3
+#define TRIGGER A1
+#define ECHO A0
 
-#define MAS 5
-#define MA1 6
-#define MA2 7
+#define MA1 2
+#define MA2 3
 
-#define MB1 8
-#define MB2 9
-#define MBS 10
-
-#define BUZZER A0
-
-#define STOP 0
-#define RIGHT 1
-#define LEFT 2
-#define FRONT 3
+#define MB1 4
+#define MB2 5
 
 void back() {
     digitalWrite(MA1, HIGH);
@@ -92,20 +83,16 @@ double error = target - output;
 }
 
 void setup() {
-    pinMode(MAS, OUTPUT);
     pinMode(MA1, OUTPUT);
     pinMode(MA2, OUTPUT);
    
     pinMode(MB1, OUTPUT);
     pinMode(MB2, OUTPUT);
-    pinMode(MBS, OUTPUT);
    
     pinMode(ECHO, INPUT);
     pinMode(TRIGGER, OUTPUT);
-    pinMode(BUZZER, OUTPUT);
-   
-    analogWrite(MAS, 164);
-    analogWrite(MBS, 164);
+    pinMode(13, OUTPUT);
+    digitalWrite(13,0);
 
     double dataset[5][2][2] = {
         {{0.02}, 1.0},
@@ -129,7 +116,8 @@ void loop() {
   double guess = feedforward(inputs);
  
   if(guess > 0.9) {
-    tone(BUZZER, 500);
+    stop();
+    delay(200);
     back();
     delay(200);
     if(rand() % 2 == 0) {
@@ -138,10 +126,16 @@ void loop() {
       left();
     }
     delay(200);
-  }else {
-    front();
-    noTone(BUZZER);
+    stop();
+    d = detect();
+    inputs[0] = d;
+    guess = feedforward(inputs);
   }
+    
+  if( guess < 0.9 ){
+    front();
+  }else {
+    stop();
+  }
 }
-
 
