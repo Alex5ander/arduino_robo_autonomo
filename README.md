@@ -7,7 +7,7 @@
 <image src="perfil.jpg" width="300" />
 
 #### Lista de materiais utilizados
-* 1 Um Kit Chassi 2WD Robô para Arduino.
+* 1 Kit Chassi 2WD Robô para Arduino.
 * 1 Driver Motor Ponte H L298n.
 * 1 Sensor de Distância Ultrassônico HC-SR04.
 * 1 Suporte Sensor Ultrassônico HC-SR04.
