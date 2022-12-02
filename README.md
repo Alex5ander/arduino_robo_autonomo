@@ -13,4 +13,4 @@
 * 1 Suporte Sensor Ultrassônico HC-SR04.
 * 1 Suporte de baterias 18650
 * 2 baterias 18650 de 4.2 volts cada
-* 1 Arduino uno R3
+* 1 Arduino Uno R3
